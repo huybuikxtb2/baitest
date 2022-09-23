@@ -33,7 +33,9 @@ class TodoWidget extends StatelessWidget {
             IconSlideAction(
               color: Colors.red,
               caption: 'Delete',
-              onTap: () => deleteTodo(context, todo),
+              onTap: ()  {
+                _showDialog(context, todo);
+              },
               icon: Icons.delete,
             )
           ],
@@ -109,4 +111,33 @@ class TodoWidget extends StatelessWidget {
           builder: (context) => EditTodoPage(todo: todo),
         ),
       );
+}
+void _showDialog(BuildContext context,  Todo todo) {
+  // user defined function void _showDialog(BuildContext context) {
+  // flutter defined function
+  showDialog(
+    context: context, builder: (BuildContext context) {
+    // return object of type Dialog
+    return AlertDialog(
+      title: Text("Delete"),
+      content: Text("Are you sure you want to delete?"),
+      actions: <Widget>[
+        new FlatButton(
+          child: new Text("No"),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+        new FlatButton(
+          child: new Text("Yes"),
+          onPressed: () {
+            final provider = Provider.of<TodosProvider>(context, listen: false);
+            provider.removeTodo(todo);
+            Navigator.pop(context);
+          }
+        ),
+      ],
+    );
+  },
+  );
 }
