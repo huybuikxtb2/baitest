@@ -5,7 +5,7 @@ import 'package:todo_app_ui_ii_example/provider/todos.dart';
 import 'package:todo_app_ui_ii_example/widget/todo_form_widget.dart';
 
 class EditTodoPage extends StatefulWidget {
-  final Todo todo;
+  final TodoModel todo;
 
   const EditTodoPage({Key key, @required this.todo}) : super(key: key);
 
@@ -30,10 +30,12 @@ class _EditTodoPageState extends State<EditTodoPage> {
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
+          backgroundColor: Colors.green,
           title: Text('Edit Todo'),
           actions: [
             IconButton(
               icon: Icon(Icons.delete),
+              color: Colors.red,
               onPressed: () {
                 final provider =
                     Provider.of<TodosProvider>(context, listen: false);

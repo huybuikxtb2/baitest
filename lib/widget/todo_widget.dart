@@ -7,7 +7,7 @@ import 'package:todo_app_ui_ii_example/provider/todos.dart';
 import 'package:todo_app_ui_ii_example/utils.dart';
 
 class TodoWidget extends StatelessWidget {
-  final Todo todo;
+  final TodoModel todo;
 
   const TodoWidget({
     @required this.todo,
@@ -50,6 +50,8 @@ class TodoWidget extends StatelessWidget {
         child: Container(
           color: Colors.greenAccent,
           padding: EdgeInsets.all(20),
+
+
           child: Row(
             children: [
               Radio(
@@ -61,10 +63,7 @@ class TodoWidget extends StatelessWidget {
                       Provider.of<TodosProvider>(context, listen: false);
                   final isDone = provider.toggleTodoStatus(todo);
 
-                  Utils.showSnackBar(
-                    context,
-                    isDone ? 'Task completed' : 'Task marked incomplete',
-                  );
+
                 },
               ),
               const SizedBox(width: 20),
@@ -99,20 +98,20 @@ class TodoWidget extends StatelessWidget {
         ),
       );
 
-  void deleteTodo(BuildContext context, Todo todo) {
+  void deleteTodo(BuildContext context, TodoModel todo) {
     final provider = Provider.of<TodosProvider>(context, listen: false);
     provider.removeTodo(todo);
 
     Utils.showSnackBar(context, 'Deleted the task');
   }
 
-  void editTodo(BuildContext context, Todo todo) => Navigator.of(context).push(
+  void editTodo(BuildContext context, TodoModel todo) => Navigator.of(context).push(
         MaterialPageRoute(
           builder: (context) => EditTodoPage(todo: todo),
         ),
       );
 }
-void _showDialog(BuildContext context,  Todo todo) {
+void _showDialog(BuildContext context,  TodoModel todo) {
   // user defined function void _showDialog(BuildContext context) {
   // flutter defined function
   showDialog(
@@ -120,16 +119,16 @@ void _showDialog(BuildContext context,  Todo todo) {
     // return object of type Dialog
     return AlertDialog(
       title: Text("Delete"),
-      content: Text("Are you sure you want to delete?"),
+      content: Text("Bạn có chắc chắn muốn xóa?"),
       actions: <Widget>[
         new FlatButton(
-          child: new Text("No"),
+          child: new Text("không"),
           onPressed: () {
             Navigator.pop(context);
           },
         ),
         new FlatButton(
-          child: new Text("Yes"),
+          child: new Text("Có"),
           onPressed: () {
             final provider = Provider.of<TodosProvider>(context, listen: false);
             provider.removeTodo(todo);

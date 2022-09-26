@@ -4,6 +4,7 @@ import 'package:todo_app_ui_ii_example/provider/todos.dart';
 import 'package:todo_app_ui_ii_example/widget/todo_widget.dart';
 
 class CompletedListWidget extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<TodosProvider>(context);

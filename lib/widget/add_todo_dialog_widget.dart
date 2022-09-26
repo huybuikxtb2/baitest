@@ -32,8 +32,7 @@ class _AddTodoDialogWidgetState extends State<AddTodoDialogWidget> {
               const SizedBox(height: 8),
               TodoFormWidget(
                 onChangedTitle: (title) => setState(() => this.title = title),
-                onChangedDescription: (description) =>
-                    setState(() => this.description = description),
+                onChangedDescription: (description) => setState(() => this.description = description),
                 onSavedTodo: addTodo,
               ),
             ],
@@ -47,7 +46,7 @@ class _AddTodoDialogWidgetState extends State<AddTodoDialogWidget> {
     if (!isValid) {
       return;
     } else {
-      final todo = Todo(
+      final todo = TodoModel(
         id: DateTime.now().toString(),
         title: title,
         description: description,
