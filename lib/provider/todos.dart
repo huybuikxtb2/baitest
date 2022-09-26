@@ -3,26 +3,14 @@ import 'package:todo_app_ui_ii_example/model/todo.dart';
 
 class TodosProvider extends ChangeNotifier {
   List<TodoModel> _todos = [
-    TodoModel(
-      createdTime: DateTime.now(),
-      title: 'Mua đồ ăn ',
 
-    ),
     TodoModel(
       createdTime: DateTime.now(),
       title: 'Đi sinh nhật bạn thân',
         description: 'tặng quà bạn thân',
 
     ),
-    TodoModel(
-      createdTime: DateTime.now(),
-      title: 'Dắt chó đi dạo 🐕',
-      description: '-Dao cong vien'
-    ),
-    TodoModel(
-      createdTime: DateTime.now(),
-      title: 'Đi đá bóng với đám bạn 🎉🥳',
-    ),
+
   ];
 
   List<TodoModel> get todos => _todos.where((todo) => todo.isDone == false).toList();
