@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app_ui_ii_example/main.dart';
 import 'package:todo_app_ui_ii_example/page/home_page.dart';
+import 'package:todo_app_ui_ii_example/widget/Calculator.dart';
 import 'package:todo_app_ui_ii_example/widget/add_todo_dialog_widget.dart';
 import 'package:todo_app_ui_ii_example/widget/completed_list_widget.dart';
 import 'package:todo_app_ui_ii_example/widget/todo_date.dart';
@@ -43,10 +44,10 @@ class AppDrawer extends StatelessWidget {
           ),
           Divider(),
           ListTile(
-            leading: Icon(Icons.favorite),
-            title: Text('Ưa thích'),
+            leading: Icon(Icons.calculate_outlined),
+            title: Text('Máy Tính'),
             onTap: (){
-
+           Navigator.of(context).pushReplacementNamed(MyHomePage.routeName);
             },
           ),
         ],

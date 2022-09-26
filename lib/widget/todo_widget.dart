@@ -5,6 +5,7 @@ import 'package:todo_app_ui_ii_example/model/todo.dart';
 import 'package:todo_app_ui_ii_example/page/edit_todo_page.dart';
 import 'package:todo_app_ui_ii_example/provider/todos.dart';
 import 'package:todo_app_ui_ii_example/utils.dart';
+import 'package:todo_app_ui_ii_example/widget/detail_todo.dart';
 
 class TodoWidget extends StatelessWidget {
   final TodoModel todo;
@@ -46,11 +47,12 @@ class TodoWidget extends StatelessWidget {
       );
 
   Widget buildTodo(BuildContext context) => GestureDetector(
-        onTap: () => editTodo(context, todo),
+        onTap: () {
+          Navigator.of(context).pushNamed(ChiTiet.routeName,arguments: todo.id);
+        },
         child: Container(
           color: Colors.greenAccent,
           padding: EdgeInsets.all(20),
-
 
           child: Row(
             children: [
@@ -59,10 +61,6 @@ class TodoWidget extends StatelessWidget {
 
                 value: todo.isDone,
                 onChanged: (_) {
-                  final provider =
-                      Provider.of<TodosProvider>(context, listen: false);
-                  final isDone = provider.toggleTodoStatus(todo);
-
 
                 },
               ),

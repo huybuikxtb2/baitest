@@ -11,6 +11,7 @@ class TodosProvider extends ChangeNotifier {
     TodoModel(
       createdTime: DateTime.now(),
       title: 'Đi sinh nhật bạn thân',
+        description: 'tặng quà bạn thân',
 
     ),
     TodoModel(
@@ -54,12 +55,26 @@ class TodosProvider extends ChangeNotifier {
 
     notifyListeners();
   }
-  void sortTodo(TodoModel todo, String title){
-    todos.sort((a,b)=>a.title.compareTo(b.title));
+  void sortAlphabet() {
+    _todos.sort((a, b) {
+      return a.title.compareTo(b.title);
+    });
+    notifyListeners();
   }
-  void deteleAll(String  productId) {
-    _todos.remove( productId);
+  void deteleAll(TodoModel todo) {
+    _todos.remove(todo);
     checktotal -= 1;
     notifyListeners();
+  }
+  void sortNewest() {
+    _todos.sort((a, b) {
+      return a.dateTime.millisecondsSinceEpoch
+          .compareTo(b.dateTime.millisecondsSinceEpoch);
+    });
+    _todos = _todos.reversed.toList();
+    notifyListeners();
+  }
+  TodoModel findById(String id) {
+    return _todos.firstWhere((prod) => prod?.id == id);
   }
 }

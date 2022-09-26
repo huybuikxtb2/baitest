@@ -6,6 +6,7 @@ import 'package:todo_app_ui_ii_example/provider/todos.dart';
 import 'package:todo_app_ui_ii_example/widget/add_todo_dialog_widget.dart';
 import 'package:todo_app_ui_ii_example/widget/app_drawer.dart';
 import 'package:todo_app_ui_ii_example/widget/completed_list_widget.dart';
+import 'package:todo_app_ui_ii_example/widget/search.dart';
 import 'package:todo_app_ui_ii_example/widget/todo_list_widget.dart';
 enum FilterOptions {
   DeleteAll,
@@ -13,7 +14,9 @@ enum FilterOptions {
   FilterPrice
 }
 class HomePage extends StatefulWidget {
+  final TodoModel todo;
 
+  const HomePage({Key key, @required this.todo}) : super(key: key);
   @override
 
   static const String routeName = '/hh';
@@ -36,33 +39,48 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         backgroundColor: Colors.green,
         title: Text(MyApp.title),
+
         actions: <Widget>[
+
           PopupMenuButton(
             icon: Icon(Icons.more_vert),
 
-            onSelected: (index) {
-              setState(() {
-               selectedIndex = index;
-              });
-            },
+
+
             itemBuilder: (context) => <PopupMenuItem>[
               PopupMenuItem(
                 child: Text('Trang mới'),
-               onTap: (){
-                 final provider = Provider.of<TodosProvider>(context, listen: false);
 
-               },
+              onTap: (){
 
-
+              },
               ),
               PopupMenuItem(
-                child: Text('Sắp xếp'),
-               value: FilterOptions.All,
+                child: Icon(Icons.search,color: Colors.black,),
+
+                onTap: (){
+                  Navigator.of(context).pushReplacementNamed(Search.routeName);
+                },
               ),
+
+
+
+
+              PopupMenuItem(
+                child: Text('Sắp xếp A- Z'),
+              onTap: (){
+                context.read<TodosProvider>().sortAlphabet();
+
+
+              },
+
+              ),
+
             ],
           ),
 
         ],
+
       ),
 
       body: tabs[selectedIndex],
@@ -83,3 +101,4 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
+
